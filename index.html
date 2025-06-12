@@ -1,34 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Imagen secreta #1</title>
-  <script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
 <body>
   <h1>Imagen secreta #1</h1>
   <p>Precio: $10 MXN</p>
-  <p>Haz clic para pagar y desbloquear la imagen completa.</p>
-  <div id="wallet_container"></div>
 
-  <script>
-  const mp = new MercadoPago('APP_USR-1fda475a-2bc1-4f2f-b5f1-70e1871983bc', { locale: 'es-MX' });
-
-  mp.checkout({
-    preference: {
-      id: 'APP_USR-5259254018482753-061219-8d64bebcf8664d94e5ef8fd7d835b591-611013744'
-    },
-    render: {
-      container: '#wallet_container',
-      label: 'Pagar y ver imagen'
-    }
-  });
-</script>
-
+  <!-- BOTÓN DE MERCADOPAGO -->
   <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-data-preference-id="611013744-a4265ea8-0c1c-435d-823e-2417803731c1" data-source="button">
-</script>
-
+    data-preference-id="611013744-a4265ea8-0c1c-435d-823e-2417803731c1" data-source="button">
+  </script>
 </body>
 </html>

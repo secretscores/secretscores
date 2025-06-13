@@ -3,40 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Imagen secreta #1</title>
-  <!-- SDK moderno -->
-  <script src="https://api.mercadopago.com"></script>
+
 </head>
 <body style="text-align: center; font-family: sans-serif; padding: 40px;">
 
   <h1>Imagen secreta #1</h1>
   <p>Precio: $10 MXN</p>
-
-  <!-- BOTÓN 1: Checkout Pro (script directo de MercadoPago) -->
-  <h2>Botón directo (clásico)</h2>
+  
   <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
     data-preference-id="611013744-a4265ea8-0c1c-435d-823e-2417803731c1"
     data-source="button">
   </script>
 
   <hr style="margin: 40px 0;">
-
-  <!-- BOTÓN 2: Checkout renderizado con SDK -->
-  <h2>Botón con SDK (más flexible)</h2>
-  <div id="wallet_container"></div>
-
-  <script>
-    const mp = new MercadoPago('APP_USR-1fda475a-2bc1-4f2f-b5f1-70e1871983bc', { locale: 'es-MX' });
-
-    mp.checkout({
-      preference: {
-        id: 'APP_USR-5259254018482753-061219-8d64bebcf8664d94e5ef8fd7d835b591-611013744'
-      },
-      render: {
-        container: '#wallet_container',
-        label: 'Pagar y desbloquear imagen'
-      }
-    });
-  </script>
 
 </body>
 </html>

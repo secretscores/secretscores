@@ -17,17 +17,17 @@
 <div id="wallet_container"></div>
 
   <script>
-    const mp = new MercadoPago('APP_USR-1fda475a-2bc1-4f2f-b5f1-70e1871983bc', { locale: 'es-MX' });
+   const mp = new MercadoPago('APP_USR-1fda475a-2bc1-4f2f-b5f1-70e1871983bc', { locale: 'es-MX' });
 
-    mp.checkout({
-      preference: {
-        id: 'APP_USR-5259254018482753-061219-8d64bebcf8664d94e5ef8fd7d835b591-611013744'
-      },
-      render: {
-        container: '#wallet_container',
-        label: 'Pagar y ver imagen'
-      }
-    });
+mp.checkout({
+  preference: {
+    id: 'APP_USR-5259254018482753-061219-8d64bebcf8664d94e5ef8fd7d835b591-611013744'
+  },
+  render: {
+    container: '#wallet_container',
+    label: 'Pagar y ver imagen'
+  }
+});
   </script>
   
 </body>

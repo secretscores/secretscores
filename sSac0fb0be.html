@@ -4,29 +4,36 @@
   <meta charset="UTF-8">
   <title>Imagen secreta desbloqueada</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100%;
       background: linear-gradient(145deg, #0f0f10, #1c1c1e);
       color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+    }
+
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100%;
     }
 
     .card {
       background-color: #1e1e21;
-      padding: 30px 30px;
+      padding: 30px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
+      max-width: 500px;
+      width: 100%;
       border: 1px solid #2e2e33;
+      text-align: center;
     }
 
     .card h1 {
@@ -45,13 +52,21 @@
       border-radius: 12px;
       border: 1px solid #444;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    @media (max-height: 700px) {
+      html, body {
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-
-  <div class="card">
-    <h1>¡Gracias por tu compra! 🖼️</h1>
+  <div class="wrapper">
+    <div class="card">
+      <h1>¡Gracias por tu compra! 🖼️</h1>
     <p>Aquí tienes los pronósticos de hoy:</p>
     <img src="imagenes/sSac0fb0be.jpeg" alt="Imagen desbloqueada">
     <br>
@@ -63,8 +78,7 @@
   <p>Tigres no se quedan atrás: permiten promedio de 6.05 ERA y han sido superados por la media del circuito.</p>
  <p>🧮 3. Diferenciales recientes de anotaciones.</p>
     <p>Ambos equipos han estado involucrados en juegos muy ofensivos: Durango permitió 384 carreras y anotó 334 en casa; Tigres permitieron 294 y anotaron 245 en gira, con diferencia de –49. Esto indica enfrentamientos con amplios marcadores.</p>
-    
+    </div>
   </div>
-
 </body>
 </html>

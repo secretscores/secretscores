@@ -14,5 +14,21 @@
     data-preference-id="611013744-a4265ea8-0c1c-435d-823e-2417803731c1"
     data-source="button">
   </script>
+<div id="wallet_container"></div>
+
+  <script>
+    const mp = new MercadoPago('TEST-2a3d7e32-4a11-4f0b-97f5-2c5f07c1374a', { locale: 'es-MX' });
+
+    mp.checkout({
+      preference: {
+        id: 'TEST-281a7ad6-000f-41d1-b3f1-5d96b9ff6fc4'
+      },
+      render: {
+        container: '#wallet_container',
+        label: 'Pagar y ver imagen'
+      }
+    });
+  </script>
+  
 </body>
 </html>

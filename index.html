@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>OnePick - Pronósticos del día</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-   body {
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
       margin: 0;
-      padding-top: 40px;
-      padding-bottom: 40px;
+      padding: 40px 20px;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(145deg, #0f0f10, #1c1c1e);
       color: #fff;
@@ -17,9 +20,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      min-height: 100dvh;
-      height: 100dvh;
-      box-sizing: border-box;
+      min-height: 100%;
     }
 
     .card {
@@ -29,17 +30,15 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       text-align: center;
       max-width: 400px;
-      width: 90%;
+      width: 100%;
       border: 1px solid #2e2e33;
     }
 
-     .logo {
+    .logo {
       width: 100px;
-      max-width: 120%;
       height: auto;
       margin: 0 auto 15px;
       display: block;
-      object-fit: contain;
     }
 
     h1 {
@@ -93,31 +92,29 @@
       font-size: 0.75rem;
       color: #888;
     }
+
     .footer img {
       width: 16px;
       height: 16px;
       vertical-align: middle;
     }
-    
   </style>
 </head>
 <body>
 
   <div class="card">
-    <img src="imagenes/oficiallogo.png" alt="Logo OnePick" class="logo"> <!-- Cambia la ruta aquí -->
+    <img src="imagenes/oficiallogo.png" alt="Logo OnePick" class="logo">
     <h1>OnePick</h1>
     <div class="icons">🍀🎯💰</div>
-    <!-- <p class="sub">Tu mejor aliado para tomar decisiones informadas hoy.</p> -->
     <p class="price">Solo $20 MXN</p>
     <p class="note">Accede al pick exclusivo del día con una sola compra.</p>
     <p>¡Haz clic para pagar y desbloquear el pronóstico completo ahora!</p>
 
     <!-- BOTÓN MERCADOPAGO -->
     <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-data-preference-id="611013744-f80e3e81-8014-44bf-93be-60c26c100e43" data-source="button">
-</script>
+    data-preference-id="611013744-f80e3e81-8014-44bf-93be-60c26c100e43" data-source="button">
+    </script>
 
-<br>
     <p style="font-size: 0.85rem; color: #888;">Al pagar, estás aceptando los términos y condiciones de nuestra comunidad.</p>
     <a href="https://secretscores.github.io/secretscores/terminos.html" class="terminos">Consulta términos y condiciones</a>
 
@@ -134,7 +131,6 @@ data-preference-id="611013744-f80e3e81-8014-44bf-93be-60c26c100e43" data-source=
         <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
       </a>
     </div>
-    
   </div>
 
 </body>

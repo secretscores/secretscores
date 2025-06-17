@@ -10,17 +10,20 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
-      padding: 40px 20px;
+      padding: 0;
+      height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(145deg, #0f0f10, #1c1c1e);
       color: #fff;
+    }
+
+    .container {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      min-height: 100%;
+      height: 100vh;
     }
 
     .card {
@@ -102,34 +105,36 @@
 </head>
 <body>
 
-  <div class="card">
-    <img src="imagenes/oficiallogo.png" alt="Logo OnePick" class="logo">
-    <h1>OnePick</h1>
-    <div class="icons">🍀🎯💰</div>
-    <p class="price">Solo $20 MXN</p>
-    <p class="note">Accede al pick exclusivo del día con una sola compra.</p>
-    <p>¡Haz clic para pagar y desbloquear el pronóstico completo ahora!</p>
+  <div class="container">
+    <div class="card">
+      <img src="imagenes/oficiallogo.png" alt="Logo OnePick" class="logo">
+      <h1>OnePick</h1>
+      <div class="icons">🍀🎯💰</div>
+      <p class="price">Solo $20 MXN</p>
+      <p class="note">Accede al pick exclusivo del día con una sola compra.</p>
+      <p>¡Haz clic para pagar y desbloquear el pronóstico completo ahora!</p>
 
-    <!-- BOTÓN MERCADOPAGO -->
-    <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-    data-preference-id="611013744-f80e3e81-8014-44bf-93be-60c26c100e43" data-source="button">
-    </script>
+      <!-- BOTÓN MERCADOPAGO -->
+      <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+      data-preference-id="611013744-f80e3e81-8014-44bf-93be-60c26c100e43" data-source="button">
+      </script>
 
-    <p style="font-size: 0.85rem; color: #888;">Al pagar, estás aceptando los términos y condiciones de nuestra comunidad.</p>
-    <a href="https://secretscores.github.io/secretscores/terminos.html" class="terminos">Consulta términos y condiciones</a>
+      <p style="font-size: 0.85rem; color: #888;">Al pagar, estás aceptando los términos y condiciones de nuestra comunidad.</p>
+      <a href="https://secretscores.github.io/secretscores/terminos.html" class="terminos">Consulta términos y condiciones</a>
 
-    <div class="testimonios">
-      <strong>📢 Opiniones reales:</strong>
-      <p>“No es magia, pero me ayudó a afinar mis decisiones. Muy recomendable.”</p>
-      <p>“Llevo 3 días siguiendo los picks y me ha ido mejor que antes.”</p>
-      <p>“Fácil, directo, y lo mejor: sin suscripciones ni membresías.”</p>
-    </div>
+      <div class="testimonios">
+        <strong>📢 Opiniones reales:</strong>
+        <p>“No es magia, pero me ayudó a afinar mis decisiones. Muy recomendable.”</p>
+        <p>“Llevo 3 días siguiendo los picks y me ha ido mejor que antes.”</p>
+        <p>“Fácil, directo, y lo mejor: sin suscripciones ni membresías.”</p>
+      </div>
 
-    <div class="footer">
-      +1200 seguidores en 
-      <a href="https://instagram.com/onepick_winever" target="_blank" title="Visita nuestro Instagram">
-        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
-      </a>
+      <div class="footer">
+        +1200 seguidores en 
+        <a href="https://instagram.com/onepick_winever" target="_blank" title="Visita nuestro Instagram">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+        </a>
+      </div>
     </div>
   </div>
 

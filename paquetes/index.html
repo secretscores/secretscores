@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>OnePick - Paquete Semanal</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 
   <style>
     * {
@@ -13,7 +13,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      min-height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(145deg, #0f0f10, #1c1c1e);
       color: #fff;
@@ -23,7 +23,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 20px;
     }
 
     .card {
@@ -121,19 +122,18 @@
 
       <!-- BOTÓN MERCADOPAGO -->
       <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-data-preference-id="611013744-8576b7a0-fd28-4a8d-80a5-1cadd50b775b" data-source="button">
-</script>
+              data-preference-id="611013744-8576b7a0-fd28-4a8d-80a5-1cadd50b775b" data-source="button">
+      </script>
 
       <p style="font-size: 0.85rem; color: #888;">Al pagar, estás aceptando los términos y condiciones de nuestra comunidad.</p>
       <a href="https://www.onepick.com.mx/terminos/" class="terminos">Consulta términos y condiciones</a>
 
-
       <div class="testimonios">
         <strong>⚠️ Importante:</strong><br><br>
         <p class="note">
-        Al completar tu pago, se desbloqueará un <strong>enlace directo al Grupo exclusivo</strong> del paquete semanal 🎯.<br><br>
-        <strong>Recuerda:</strong> el cupo es limitado a solo 30 personas. ¡Apresúrate y asegura tu lugar antes de que se agoten! 🔒🔥
-      </p>
+          Al completar tu pago, se desbloqueará un <strong>enlace directo al Grupo exclusivo</strong> del paquete semanal 🎯.<br><br>
+          <strong>Recuerda:</strong> el cupo es limitado a solo 30 personas. ¡Apresúrate y asegura tu lugar antes de que se agoten! 🔒🔥
+        </p>
       </div>
 
       <div class="footer">

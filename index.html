@@ -33,7 +33,7 @@
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       text-align: center;
-      max-width: 400px;
+      max-width: 500px;
       width: 100%;
       border: 1px solid #2e2e33;
     }
@@ -61,17 +61,44 @@
       font-size: 1.2rem;
       margin-bottom: 10px;
     }
-    
-       .resalto {
+
+    .resalto {
       color: #FFD700;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
     }
 
     .note {
       font-size: 0.9rem;
       color: #999;
-      margin: 10px 0 20px;
+      margin-bottom: 10px;
+    }
+
+    .picks-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .pick {
+      background-color: #29292d;
+      border: 1px solid #3a3a3f;
+      border-radius: 12px;
+      padding: 15px;
+      flex: 1 1 calc(50% - 20px);
+      min-width: 160px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    a.terminos {
+      color: #4caf50;
+      text-decoration: underline;
+      font-size: 0.85rem;
+      display: block;
+      margin-top: 15px;
     }
 
     .testimonios {
@@ -87,14 +114,6 @@
 
     .testimonios p {
       margin: 8px 0;
-    }
-
-    a.terminos {
-      color: #4caf50;
-      text-decoration: underline;
-      font-size: 0.85rem;
-      display: block;
-      margin-top: 15px;
     }
 
     .footer {
@@ -120,48 +139,38 @@
       <p class="price">$20 MXN</p>
       <p class="note">Accede al Pick especial con una sola compra.</p>
       <p>¡Haz clic para pagar y desbloquear los pronósticos completos ahora!</p>
-      
-     <!--  <p class="note">Paquete Especial MLB+LMB+FIFA CWC</p>
-      <p class="price">Todo incluido en una sola compra, 2 Derechas + 2 Parlays, aprovecha y ahorra en un solo paquete.</p>
-      <!-- BOTÓN MERCADOPAGO
-      <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-data-preference-id="611013744-724cc6b9-27cb-4b50-82b1-5804a0fa8e84" data-source="button">
-</script>.  -->
 
-<!-- <p class="resalto">Parlay Momio +117:</p>
-  <p class="note">Pick FIFA CWC vigencia 01:00 PM CDMX</p> -->
-<!-- BOTÓN MERCADOPAGO -->
-<!--      <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-data-preference-id="611013744-68298122-3888-4a73-a65b-a2ae67f9ce11" data-source="button">
-</script>
-      <br> -->
-      
-      
-      <p class="resalto">Parlay Momio +113:</p>
-  <p class="note">Pick MLB vigencia 05:00 PM CDMX</p>
-<!-- BOTÓN MERCADOPAGO -->
-      <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-data-preference-id="611013744-0712b72e-c423-4346-8be9-3a330bc4f5ea" data-source="button">
-</script>
-      <br>
-      
-      <p class="resalto">Derecha 1:</p>
-  <p class="note">Pick MLB vigencia 04:30 PM CDMX</p>
-<!-- BOTÓN MERCADOPAGO -->
-      <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-data-preference-id="611013744-1081e0d2-b341-4d0e-920c-610b18e2a536" data-source="button">
-</script>
-      <br>
-      
-      
-      <p class="resalto">Derecha 2:</p>
-  <p class="note">Pick MLB Vigencia 04:00 PM CDMX</p>
-<!-- BOTÓN MERCADOPAGO -->
-      <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
-data-preference-id="611013744-0252a445-a962-4b93-9d95-e5f5e287688d" data-source="button">
-</script>
-      <br>
-      
+      <div class="picks-container">
+        <!-- <div class="pick">
+          <p class="resalto">Parlay Momio +117</p>
+          <p class="note">Pick FIFA CWC</p>
+          <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+            data-preference-id="611013744-a5bdc3ca-7b0d-4d56-befd-dd80c40279cb" data-source="button">
+          </script>
+        </div> -->
+        <div class="pick">
+          <p class="resalto">Parlay Momio +113</p>
+          <p class="note">Pick MLB</p>
+          <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+            data-preference-id="611013744-a5bdc3ca-7b0d-4d56-befd-dd80c40279cb" data-source="button">
+          </script>
+        </div>
+        <div class="pick">
+          <p class="resalto">Derecha 1</p>
+          <p class="note">Pick MLB</p>
+          <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+            data-preference-id="611013744-a5bdc3ca-7b0d-4d56-befd-dd80c40279cb" data-source="button">
+          </script>
+        </div>
+        <div class="pick">
+          <p class="resalto">Derecha 2</p>
+          <p class="note">Pick MLB</p>
+          <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+            data-preference-id="611013744-a5bdc3ca-7b0d-4d56-befd-dd80c40279cb" data-source="button">
+          </script>
+        </div>
+      </div>
+
       <p style="font-size: 0.85rem; color: #888;">Al pagar, estás aceptando los términos y condiciones de nuestra comunidad.</p>
       <a href="https://www.onepick.com.mx/terminos/" class="terminos">Consulta términos y condiciones</a>
 

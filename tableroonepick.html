@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tablero OnePick</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(145deg, #0f0f10, #1c1c1e);
+      color: #fff;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+      flex-direction: column;
+    }
+    
+     .logo {
+      width: 100px;
+      height: auto;
+      margin: 0 auto 15px;
+      display: block;
+    }
+    
+    .card {
+      background-color: #1e1e21;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      text-align: center;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #FFD700;
+    }
+    .dashboard {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .metric {
+      flex: 1 1 200px;
+      background: #29292d;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .metric h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #ccc;
+    }
+    .metric p {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #4caf50;
+    }
+    form input, form select, form button, .download-btn {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+    }
+    form input, form select {
+      background: #2b2b2f;
+      color: #fff;
+    }
+    form button, .download-btn {
+      background-color: #4caf50;
+      color: #fff;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background: #29292d;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #3a3a3f;
+    }
+    tr.ganado { background-color: #2e4932; }
+    tr.perdido { background-color: #4a2e2e; }
+    #auth-container {
+      margin-bottom: 20px;
+    }
+    #pickForm {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+        <img src="imagenes/OnePick_NewLogo_HQ.webp" alt="Logo OnePick" class="logo">
+      <h1>TABLERO ONEPICK 2025</h1>
+
+      <div class="dashboard">
+        <div class="metric"><h3>Total Picks</h3><p id="totalPicks">0</p></div>
+        <div class="metric"><h3>FREE</h3><p id="freePicks">0</p></div>
+        <div class="metric"><h3>VIP</h3><p id="vipPicks">0</p></div>
+        <div class="metric"><h3>Efectividad Global</h3><p id="efectividad">0%</p></div>
+        <div class="metric"><h3>ROI Total</h3><p id="roiTotal">0</p></div>
+      </div>
+
+      <button class="download-btn" onclick="descargarExcel()">📥 Descargar Excel</button>
+
+      <div id="auth-container">
+        <p>Ingresa la contraseña para agregar jugadas:</p>
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="verificarPassword()">Entrar</button>
+      </div>
+
+      <form id="pickForm">
+        <input type="date" id="fecha" required>
+        <select id="tipo">
+          <option value="FREE">FREE</option>
+          <option value="VIP">VIP</option>
+        </select>
+        <input type="text" id="jugada" placeholder="Jugada" required>
+        <input type="number" id="momio" placeholder="Momio" required>
+        <select id="veredicto">
+          <option value="✅">✅</option>
+          <option value="❌">❌</option>
+        </select>
+        <button type="submit">Agregar</button>
+      </form>
+
+      <table id="tablaPicks">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Jugada</th>
+            <th>Momio</th>
+            <th>Veredicto</th>
+            <th>ROI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const k3jey4a = '0n3p1ckW1n3v3r';
+    let picks = [];
+
+    function mostrarFormulario() {
+      document.getElementById('auth-container').style.display = 'none';
+      document.getElementById('pickForm').style.display = 'block';
+    }
+
+    function verificarPassword() {
+      const input = document.getElementById('password').value;
+      if (input === k3jey4a) {
+        sessionStorage.setItem('auth', 'true');
+        mostrarFormulario();
+      } else {
+        alert('Contraseña incorrecta');
+      }
+    }
+
+    if (sessionStorage.getItem('auth') === 'true') {
+      mostrarFormulario();
+    }
+
+    document.getElementById('pickForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fecha = document.getElementById('fecha').value;
+      const tipo = document.getElementById('tipo').value;
+      const jugada = document.getElementById('jugada').value;
+      const momio = parseFloat(document.getElementById('momio').value);
+      const veredicto = document.getElementById('veredicto').value;
+
+      let roi = veredicto === "✅" ? (momio < 0 ? 100 / Math.abs(momio) : momio / 100) : -1;
+      roi = parseFloat(roi.toFixed(2));
+
+      const pick = { fecha, tipo, jugada, momio, veredicto, roi };
+      picks.push(pick);
+      agregarFilaTabla(pick);
+      actualizarDashboard();
+
+      this.reset();
+    });
+
+    function agregarFilaTabla(pick) {
+      const row = document.createElement('tr');
+      row.className = pick.veredicto === "✅" ? "ganado" : "perdido";
+      row.innerHTML = `<td>${pick.fecha}</td><td>${pick.tipo}</td><td>${pick.jugada}</td><td>${pick.momio}</td><td>${pick.veredicto}</td><td>${pick.roi}</td>`;
+      document.querySelector('#tablaPicks tbody').appendChild(row);
+    }
+
+    function actualizarDashboard() {
+      const total = picks.length;
+      const totalFree = picks.filter(p => p.tipo === 'FREE').length;
+      const totalVip = picks.filter(p => p.tipo === 'VIP').length;
+      const aciertos = picks.filter(p => p.veredicto === '✅').length;
+      const roiTotal = picks.reduce((sum, p) => sum + p.roi, 0);
+
+      document.getElementById('totalPicks').textContent = total;
+      document.getElementById('freePicks').textContent = totalFree;
+      document.getElementById('vipPicks').textContent = totalVip;
+      document.getElementById('efectividad').textContent = total ? ((aciertos / total) * 100).toFixed(1) + '%' : '0%';
+      document.getElementById('roiTotal').textContent = roiTotal.toFixed(2);
+    }
+
+    function descargarExcel() {
+      if (picks.length === 0) {
+        alert('No hay picks para exportar.');
+        return;
+      }
+      const ws = XLSX.utils.json_to_sheet(picks);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Picks");
+      XLSX.writeFile(wb, "tablero_onepick.xlsx");
+    }
+  </script>
+</body>
+</html>

@@ -198,7 +198,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pick)
-      }).then(response => console.log('Guardado en Google Sheets')).catch(console.error);
+      }).then(res => console.log('Enviado')).catch(console.error);
 
       this.reset();
     });
@@ -234,6 +234,23 @@
       XLSX.utils.book_append_sheet(wb, ws, "Picks");
       XLSX.writeFile(wb, "tablero_onepick.xlsx");
     }
+
+    // 🔄 Cargar picks existentes al inicio
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch(scriptURL)
+        .then(res => res.json())
+        .then(data => {
+          data.forEach(pick => {
+            // Normalizar tipos
+            pick.momio = parseFloat(pick.momio);
+            pick.roi = parseFloat(pick.roi);
+            picks.push(pick);
+            agregarFilaTabla(pick);
+          });
+          actualizarDashboard();
+        })
+        .catch(console.error);
+    });
   </script>
 </body>
 </html>

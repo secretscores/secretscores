@@ -94,6 +94,7 @@
     }
     tr.ganado { background-color: #2e4932; }
     tr.perdido { background-color: #4a2e2e; }
+    tr.pendiente { background-color: #3a3a3a; }
     #auth-container {
       margin-bottom: 20px;
     }
@@ -134,6 +135,7 @@
         <select id="veredicto">
           <option value="✅">✅</option>
           <option value="❌">❌</option>
+          <option value="🔃">🔃</option>
         </select>
         <button type="submit">Agregar</button>
       </form>
@@ -186,8 +188,8 @@
       const momio = parseFloat(document.getElementById('momio').value);
       const veredicto = document.getElementById('veredicto').value;
 
-      let roi = veredicto === "✅" ? (momio < 0 ? 100 / Math.abs(momio) : momio / 100) : -1;
-      roi = parseFloat(roi.toFixed(2));
+      let roi = veredicto === "✅" ? (momio < 0 ? 100 / Math.abs(momio) : momio / 100) : (veredicto === "🔃" ? "Push" : -1);
+      roi = typeof roi === 'number' ? parseFloat(roi.toFixed(2)) : roi;
 
       const pick = { fecha, tipo, jugada, momio, veredicto, roi };
       picks.push(pick);
@@ -205,7 +207,7 @@
 
     function agregarFilaTabla(pick) {
       const row = document.createElement('tr');
-      row.className = pick.veredicto === "✅" ? "ganado" : "perdido";
+      row.className = pick.veredicto === "✅" ? "ganado" : pick.veredicto === "❌" ? "perdido" : "pendiente";
       row.innerHTML = `<td>${pick.fecha}</td><td>${pick.tipo}</td><td>${pick.jugada}</td><td>${pick.momio}</td><td>${pick.veredicto}</td><td>${pick.roi}</td>`;
       document.querySelector('#tablaPicks tbody').appendChild(row);
     }
@@ -215,12 +217,13 @@
       const totalFree = picks.filter(p => p.tipo === 'FREE').length;
       const totalVip = picks.filter(p => p.tipo === 'VIP').length;
       const aciertos = picks.filter(p => p.veredicto === '✅').length;
-      const roiTotal = picks.reduce((sum, p) => sum + p.roi, 0);
+      const evaluados = picks.filter(p => p.veredicto !== '🔃');
+      const roiTotal = evaluados.reduce((sum, p) => typeof p.roi === 'number' ? sum + p.roi : sum, 0);
 
       document.getElementById('totalPicks').textContent = total;
       document.getElementById('freePicks').textContent = totalFree;
       document.getElementById('vipPicks').textContent = totalVip;
-      document.getElementById('efectividad').textContent = total ? ((aciertos / total) * 100).toFixed(1) + '%' : '0%';
+      document.getElementById('efectividad').textContent = evaluados.length ? ((aciertos / evaluados.length) * 100).toFixed(1) + '%' : '0%';
       document.getElementById('roiTotal').textContent = roiTotal.toFixed(2);
     }
 
@@ -235,15 +238,13 @@
       XLSX.writeFile(wb, "tablero_onepick.xlsx");
     }
 
-    // 🔄 Cargar picks existentes al inicio
     window.addEventListener('DOMContentLoaded', () => {
       fetch(scriptURL)
         .then(res => res.json())
         .then(data => {
           data.forEach(pick => {
-            // Normalizar tipos
             pick.momio = parseFloat(pick.momio);
-            pick.roi = parseFloat(pick.roi);
+            pick.roi = pick.veredicto === '🔃' ? 'Push' : parseFloat(pick.roi);
             picks.push(pick);
             agregarFilaTabla(pick);
           });
